@@ -1,0 +1,11 @@
+SELECT 
+SUM(myTable.score), myTable.fName
+FROM
+(SELECT t.exp_name as expName ,t.score as score, 
+ti.cst_fname as fName
+FROM expertise_details AS t
+JOIN consultants_expertise AS ti
+ON t.exp_name=ti.exp_name) as myTable
+
+GROUP BY  myTable.fName
+ORDER BY SUM(myTable.score) DESC LIMIT 3
